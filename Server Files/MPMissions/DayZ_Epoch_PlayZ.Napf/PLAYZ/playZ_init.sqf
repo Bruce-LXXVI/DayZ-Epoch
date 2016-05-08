@@ -117,6 +117,12 @@ if (isServer) then
 		[] execVM "\z\addons\dayz_server\PLAYZ\mapaddons\chernarus\init.sqf";
 	};
 */
+
+	if( PLAYZ_worldname == "napf" ) then
+	{
+		// Custom mapaddons
+		[] execVM "\z\addons\dayz_server\PLAYZ\mapaddons\napf\init.sqf";
+	};
 };
 
 
