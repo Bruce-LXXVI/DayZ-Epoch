@@ -56,6 +56,7 @@ DZE_BuildOnRoads = false; // Allow building on roads
 DZE_ConfigTrader = true; // Use config files for traders instead of database. Loads faster and uses less network traffic
 DZE_MissionLootTable = false; // Use custom CfgLoot defined in mission file
 DZE_PlayerZed = true; // Enable spawning as a player zombie when players die with infected status
+DZE_R3F_WEIGHT = true; // Enable R3F weight. Players carrying too much will be overburdened and forced to move slowly.
 DZE_slowZombies = false; // Force zombies to always walk
 DZE_StaticConstructionCount = 0; // Steps required to build. If greater than 0 this applies to all objects.
 DZE_GodModeBase = false; // Make player built base objects indestructible
@@ -63,7 +64,7 @@ DZE_requireplot = 1; // Require a plot pole to build  0 = Off, 1 = On
 DZE_PlotPole = [30,45]; // Radius owned by plot pole [Regular objects,Other plotpoles]. Difference between them is the minimum buffer between bases.
 DZE_BuildingLimit = 150; // Max number of built objects allowed in DZE_PlotPole radius
 DZE_SelfTransfuse = false; // Allow players to bloodbag themselves
-DZE_selfTransfuse_Values = [12000,15,300]; // [blood amount given, infection chance %, cooldown in seconds]
+DZE_selfTransfuse_Values = [12000,15,120]; // [blood amount given, infection chance %, cooldown in seconds]
 MaxDynamicDebris = 500; // Max number of random road blocks to spawn around the map
 MaxVehicleLimit = 300; // Max number of random vehicles to spawn around the map
 spawnArea = 1400; // Distance around markers to find a safe spawn position
