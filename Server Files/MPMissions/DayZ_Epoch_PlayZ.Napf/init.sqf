@@ -75,7 +75,7 @@ EpochEvents = [["any","any","any","any",30,"crash_spawner"],["any","any","any","
 
 
 // PLAYZ EPOCH CONFIG VARIABLES //
-
+Z_SingleCurrency=true;
 // PLAYZ EPOCH CONFIG VARIABLES //
 
 
@@ -115,7 +115,7 @@ call compile preprocessFileLineNumbers "\z\addons\dayz_code\system\mission\napf.
 /*
  * INITIALIZE playZ scripts and modules
  */
-//call compile preprocessFileLineNumbers "PLAYZ\playZ_init.sqf";
+call compile preprocessFileLineNumbers "PLAYZ\playZ_init.sqf";
 
 
 initialized = true;
