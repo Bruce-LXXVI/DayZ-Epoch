@@ -76,6 +76,7 @@ EpochEvents = [["any","any","any","any",30,"crash_spawner"],["any","any","any","
 
 // PLAYZ EPOCH CONFIG VARIABLES //
 Z_SingleCurrency=true;
+MaxVehicleLimit=600;
 // PLAYZ EPOCH CONFIG VARIABLES //
 
 
