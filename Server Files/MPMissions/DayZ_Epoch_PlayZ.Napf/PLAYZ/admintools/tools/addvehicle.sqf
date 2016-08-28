@@ -38,6 +38,7 @@ if ( 1==1 ) then {
 	if(count _location != 0) then {
 		//place vehicle spawn marker (local)
 		if(!(_vehtospawn in DayZ_SafeObjects)) then {
+			DayZ_SafeObjects set [ count DayZ_SafeObjects, _vehtospawn];
 			diag_log format ["[EAT] WARNING: Type %1 is not in DayZ_SafeObjects.", _vehtospawn];
 		};
 /*
