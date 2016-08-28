@@ -29,7 +29,9 @@ aiKills = 1;
 diagRadio = 1;
 diagHit = 1;
 
+// Epoch Admin Tools
+#include "PLAYZ\admintools\dialog.hpp"
+
 #include "\z\addons\dayz_code\gui\description.hpp"
-#include "\z\addons\dayz_code\Configs\CfgServerTrader\cfgServerTrader.hpp"
-#include "\z\addons\dayz_code\Configs\RscDisplay\ZSCdefines.hpp"
-#include "\z\addons\dayz_code\Configs\RscDisplay\advancedTrading.hpp"
+#include "\z\addons\dayz_code\Configs\CfgLoot\CfgLoot.hpp"
+#include "\z\addons\dayz_code\Configs\CfgServerTrader\CfgServerTrader.hpp"
