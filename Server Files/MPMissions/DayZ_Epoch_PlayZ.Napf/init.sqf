@@ -8,13 +8,15 @@ dayZ_instance = 24; //Instance ID of this server
 dayZ_serverName = "PlayZ Napf"; //Shown to all players in the bottom left of the screen (country code + server number)
 
 //Game settings
-dayz_antihack = 0; // DayZ Antihack / 1 = enabled // 0 = disabled
+dayz_antihack = 1; // DayZ Antihack / 1 = enabled // 0 = disabled
+dayz_antiWallHack = 1; //DayZ AntiWallhack / 1 = enabled // 0 = disabled, Adds items to the map to plug holes.
 dayz_REsec = 1; // DayZ RE Security / 1 = enabled // 0 = disabled
 dayz_enableRules = true; //Enables a nice little news/rules feed on player login (make sure to keep the lists quick).
 dayz_quickSwitch = false; //Turns on forced animation for weapon switch. (hotkeys 1,2,3) False = enable animations, True = disable animations
 dayz_POIs = true;
 dayz_infectiousWaterholes = true;
 dayz_ForcefullmoonNights = true; // Forces night time to be full moon.
+dayz_randomMaxFuelAmount = 500; //Puts a random amount of fuel in all fuel stations.
 
 //DayZMod presets
 dayz_presets = "Custom"; //"Custom","Classic","Vanilla","Elite"
@@ -53,8 +55,6 @@ dayz_MapArea = 18000; // Distance from center of map to out of bounds line
 dayz_paraSpawn = false; // Halo spawn
 DZE_BackpackAntiTheft = false; // Prevent stealing from backpacks in trader zones
 DZE_BuildOnRoads = false; // Allow building on roads
-DZE_ConfigTrader = true; // Use config files for traders instead of database. Loads faster and uses less network traffic
-DZE_MissionLootTable = false; // Use custom CfgLoot defined in mission file
 DZE_PlayerZed = true; // Enable spawning as a player zombie when players die with infected status
 DZE_R3F_WEIGHT = true; // Enable R3F weight. Players carrying too much will be overburdened and forced to move slowly.
 DZE_slowZombies = false; // Force zombies to always walk
@@ -72,6 +72,11 @@ spawnShoremode = 1; // Random spawn locations  1 = on shores, 0 = inland
 EpochUseEvents = false; //Enable event scheduler. Define custom scripts in dayz_server\modules to run on a schedule.
 EpochEvents = [["any","any","any","any",30,"crash_spawner"],["any","any","any","any",0,"crash_spawner"],["any","any","any","any",15,"supply_drop"]];
 // EPOCH CONFIG VARIABLES END //
+
+
+// PLAYZ EPOCH CONFIG VARIABLES //
+
+// PLAYZ EPOCH CONFIG VARIABLES //
 
 
 // DO NOT EDIT BELOW HERE //
@@ -110,7 +115,7 @@ call compile preprocessFileLineNumbers "\z\addons\dayz_code\system\mission\napf.
 /*
  * INITIALIZE playZ scripts and modules
  */
-call compile preprocessFileLineNumbers "PLAYZ\playZ_init.sqf";
+//call compile preprocessFileLineNumbers "PLAYZ\playZ_init.sqf";
 
 
 initialized = true;
@@ -121,17 +126,21 @@ execVM "\z\addons\dayz_code\system\DynamicWeatherEffects.sqf";
 
 if (isServer) then {
 	call compile preprocessFileLineNumbers "\z\addons\dayz_server\system\dynamic_vehicle.sqf";
-	execVM "\z\addons\dayz_server\traders\napf.sqf"; //Add trader agents
-	execVM "\z\addons\dayz_server\system\server_monitor.sqf";
+	call compile preprocessFileLineNumbers "\z\addons\dayz_server\traders\napf.sqf"; //Add trader agents
+	call compile preprocessFileLineNumbers "\z\addons\dayz_server\system\server_monitor.sqf";
 	if (dayz_infectiousWaterholes && (toLower worldName == "chernarus")) then {execVM "\z\addons\dayz_code\system\mission\chernarus\infectiousWaterholes\init.sqf";};
 };
 
 //Must be global spawned, so players don't fall through buildings (might be best to spilt these to important, not important)
 if (dayz_POIs && (toLower worldName == "chernarus")) then { execVM "\z\addons\dayz_code\system\mission\chernarus\poi\init.sqf"; };
+// Lootable objects from CfgTownGeneratorDefault.hpp
+if (dayz_townGenerator) then { execVM "\z\addons\dayz_code\system\mission\chernarus\LegacyTownGenerator\MainLootableObjects.sqf"; };
 
 if (!isDedicated) then {
-	if (dayz_antihack != 0) then {
+	if (dayz_antiWallHack != 0) then {
+		//Enables Map Plug items
 		execVM "\z\addons\dayz_code\system\mission\chernarus\security\init.sqf";
+		//Enables Plant lib fixes
 		call compile preprocessFileLineNumbers "\z\addons\dayz_code\system\antihack.sqf";
 	};
 	
